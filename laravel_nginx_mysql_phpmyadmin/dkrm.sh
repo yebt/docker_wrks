@@ -2,10 +2,10 @@
 
 ### Editable Vars
 # PROJECT
-PROJECT_NAME='test'
+PROJECT_NAME='shopindero_prjt'
 
 # DIRS
-PROJECT_SRC='src'
+PROJECT_SRC='shopindero'
 PROJECT_MYSQL="mysql"
 PROJECT_NGINX="nginx"
 PROJECT_PHPMYADMIN="phpmyadmin"
@@ -279,7 +279,7 @@ function _run_mysql {
     -v $(pwd)/$PROJECT_MYSQL:/var/lib/mysql:z \
     -e MYSQL_USER=$CONTAINER_DB_USER \
     -e MYSQL_PASSWORD=$CONTAINER_DB_PASSWORD \
-    -e MYSQL_DATABASE=$CONTAINER_DB_NAME \
+    -e MYSQL_DATABASE=$CONTAINER_DB_DATABASE \
     -e MYSQL_ROOT_PASSWORD=$CONTAINER_DB_ROOT_PASSWORD \
     -p $CONTAINER_PORT_DB:3306 \
     --network $NETWORK_NAME \
@@ -510,3 +510,4 @@ do
     echo -e "$RESET"
     _input_cae $command
 done
+
