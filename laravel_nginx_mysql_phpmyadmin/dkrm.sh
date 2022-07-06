@@ -83,7 +83,7 @@ fi
 function _run_network () {
     RESLT=$($DOKCERCOMMAND network ls --format "{{.Name}}" | grep $NETWORK_NAME$)
     if [ -z "$RESLT" ]; then
-        $DOKCERCOMMAND network create $NETWORK_NAME 
+        $DOKCERCOMMAND network create $NETWORK_NAME
         echo -e "Network $BOLD$NETWORK_NAME$NORMAL $NORMAL$UNDERLINE$FOREGROUND$GREEN[DONE]$RESET"
     else
         echo -e "Network $BOLD $NETWORK_NAME  $NORMAL$UNDERLINE$FOREGROUND$PURLPLE[AE]$RESET"
@@ -93,7 +93,7 @@ function _run_network () {
 function _del_network(){
     RESLT=$($DOKCERCOMMAND network ls --format "{{.Name}}" | grep $NETWORK_NAME$)
     if [ -n "$RESLT" ]; then
-        $DOKCERCOMMAND network rm $NETWORK_NAME 
+        $DOKCERCOMMAND network rm $NETWORK_NAME
         echo -e "Network $BOLD$NETWORK_NAME$NORMAL $NORMAL$UNDERLINE$FOREGROUND$YELLOW[REM]$RESET"
     else
         echo -e "Network $BOLD $NETWORK_NAME  $NORMAL$UNDERLINE$FOREGROUND$PURLPLE[AREM]$RESET"
@@ -132,7 +132,7 @@ function _stop_container {
     if [ -n "$RESLT" ]; then
         RESLT=$($DOKCERCOMMAND ps --format "{{.Names}}" | grep $CONTAINER_NAME$)
         if [ -n "$RESLT" ]; then
-            $DOKCERCOMMAND stop $CONTAINER_NAME 
+            $DOKCERCOMMAND stop $CONTAINER_NAME
             echo -e "|> Container:\n$BOLD$CONTAINER_NAME$RESET\n-> $BOLD$FOREGROUND$GREEN[Done]$FOREGROUND$YELLOW[Stoped]$RESET :)"
         else
             echo -e "|> Container:\n$BOLD$CONTAINER_NAME$RESET\n-> $BOLD$FOREGROUND$PURLPLE[Not running]$RESET :|$FOREGROUND$ORANGE Can't stop stopped container$RESET"
@@ -149,7 +149,7 @@ function _del_container {
     if [ -n "$RESLT" ]; then
         RESLT=$($DOKCERCOMMAND ps --format "{{.Names}}" | grep $CONTAINER_NAME$)
         if [ -z "$RESLT" ]; then
-            $DOKCERCOMMAND rm $CONTAINER_NAME 
+            $DOKCERCOMMAND rm $CONTAINER_NAME
             echo -e "|> Container:\n$BOLD$CONTAINER_NAME$RESET\n-> $BOLD$FOREGROUND$GREEN[Done]$FOREGROUND$YELLOW[Deleted]$RESET :)"
         else
             echo -e "|> Container:\n$BOLD$CONTAINER_NAME$RESET\n-> $BOLD$FOREGROUND$RED[FAIL]$RESET :|$FOREGROUND$ORANGE Can't delete running container$RESET"
@@ -166,7 +166,7 @@ function _start_container {
     if [ -n "$RESLT" ]; then
         RESLT=$($DOKCERCOMMAND ps  --format "{{.Names}}" | grep $CONTAINER_NAME$)
         if [ -z "$RESLT" ]; then
-            $DOKCERCOMMAND start $CONTAINER_NAME 
+            $DOKCERCOMMAND start $CONTAINER_NAME
             echo -e "|> Container:\n$BOLD$CONTAINER_NAME$RESET\n-> $BOLD$FOREGROUND$GREEN[Done]$FOREGROUND$YELLOW[Started]$RESET :)"
         else
             echo -e "|> Container:\n$BOLD$CONTAINER_NAME$RESET\n-> $BOLD$FOREGROUND$RED[FAIL]$RESET :|$FOREGROUND$ORANGE Can't start running container$RESET"
@@ -476,6 +476,20 @@ function _input_cae {
         ;;
         itadminer|itadmnr|itadm)
             $DOKCERCOMMAND exec -it $CONTAINER_NAME_ADMINER sh
+        ;;
+        
+        start|st)
+            bash $0 rnphp rrng rnmysql rnphpmyadmin rnadminer
+        ;;
+        stop|sp)
+            bash $0 spphp spng spmysql spphpmyadmin spadminer
+        ;;
+        delete|del)
+            bash $0 spphp spng spmysql spphpmyadmin spadminer
+            bash $0 dphp dng dmysql dphpmyadmin dadminer
+        ;;
+        restart|rr)
+            bash $0 rrphp rrng rnmysql rrphpmyadmin rradminer
         ;;
         
         
