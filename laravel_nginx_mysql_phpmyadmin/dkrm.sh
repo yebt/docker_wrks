@@ -348,7 +348,7 @@ function _input_cae {
         stopphp|spphp)
             _stop_container $CONTAINER_NAME_PHP
         ;;
-        delphp|dlphp|rmphp)
+        delphp|dlphp|dphp|rmphp)
             _del_container $CONTAINER_NAME_PHP
         ;;
         startphp|stphp)
@@ -484,7 +484,7 @@ function _input_cae {
         stop|sp)
             bash $0 spphp spng spmysql spphpmyadmin spadminer
         ;;
-        delete|del)
+        delete|del|rm)
             bash $0 spphp spng spmysql spphpmyadmin spadminer
             bash $0 dphp dng dmysql dphpmyadmin dadminer
         ;;
